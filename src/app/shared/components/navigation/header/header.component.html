@@ -1,0 +1,15 @@
+
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li *ngIf="!auth.isAuthenticated()"><a [routerLink]="'/login'">Login</a></li>
+        <li *ngIf="!auth.isAuthenticated()"><a [routerLink]="'/register'">Registration</a></li>
+        <li  *ngIf="auth.isAuthenticated()"><a [routerLink]="'/site'">Site-face</a></li>
+        <li *ngIf="auth.isAuthenticated()"><a (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>

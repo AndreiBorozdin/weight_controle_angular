@@ -1,0 +1,126 @@
+<div class="auth-block">
+  <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="card-content">
+      <span class="card-title">Создать аккаунт</span>
+      <div class="input-field">
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          [ngClass]="{'invalid': form.get('username').invalid && form.get('username').touched}"
+        >
+        <label for="username">Username:</label>
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('username').invalid && form.get('username').touched"
+        >
+          <span *ngIf="form.get('username').errors['required']">Username не должен быть пустым</span>
+        </span>
+      </div>
+      <div class="input-field">
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}"
+        >
+        <label for="email">Email:</label>
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('email').invalid && form.get('email').touched"
+        >
+          <span *ngIf="form.get('email').errors['required']">Email не должен быть пустым</span>
+          <span *ngIf="form.get('email').errors['email']">Введите корректный email</span>
+        </span>
+      </div>
+      <div class="input-field">
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+        >
+        <label for="password">Пароль:</label>
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('password').invalid && form.get('password').touched"
+        >
+          <span *ngIf="form.get('password').errors['required']">
+            Пароль не должен быть пустым
+          </span>
+          <span
+            *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']"
+          >
+            Пароль должен быть больше {{form.get('password').errors['minlength']['requiredLength']}} символов.
+            Сейчас {{form.get('password').errors['minlength']['actualLength']}}
+          </span>
+        </span>
+      </div>
+      <div class="input-field">
+        <input
+          id="age"
+          type="number"
+          formControlName="age"
+          min="1"
+          [ngClass]="{'invalid': form.get('age').invalid && form.get('age').touched}"
+        >
+        <label for="age">Age:</label>
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('age').invalid && form.get('age').touched"
+        >
+          <span *ngIf="form.get('age').errors['required']">Age не должен быть пустым</span>
+        </span>
+      </div>
+      <div class="input-field">
+        <input
+          id="height"
+          type="number"
+          formControlName="height"
+          min="1"
+          [ngClass]="{'invalid': form.get('height').invalid && form.get('height').touched}"
+        >
+        <label for="height">Height:</label>
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('height').invalid && form.get('height').touched"
+        >
+          <span *ngIf="form.get('height').errors['required']">Height не должен быть пустым</span>
+        </span>
+      </div>
+
+      <div class="input-field">
+        <input
+          id="weight"
+          type="number"
+          min="1"
+          formControlName="weight"
+          [ngClass]="{'invalid': form.get('weight').invalid && form.get('weight').touched}"
+        >
+        <label for="weight">Weight:</label>
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('weight').invalid && form.get('weight').touched"
+        >
+          <span *ngIf="form.get('weight').errors['required']">Weight не должен быть пустым</span>
+        </span>
+      </div>
+      <div class="input-field">
+        <select formControlName="gender" id="gender">
+          <option value="Man">Man</option>
+          <option value="Woman">Woman</option>
+        </select>
+        <label>Choose your gender</label>
+      </div>
+    </div>
+    <div class="card-action">
+      <button
+        class="modal-action btn waves-effect"
+        type="submit"
+        [disabled]="form.invalid || form.disabled"
+      >
+        Создать
+      </button>
+    </div>
+  </form>
+</div>
